@@ -8,8 +8,7 @@ public class RequestController {
 
     /// Basic rest controller
     @GetMapping("/hello")
-    public String hello()
-    {
+    public String hello() {
         return "Hello World";
     }
 
@@ -23,5 +22,11 @@ public class RequestController {
     @GetMapping
     public String details(@RequestParam String name, @RequestParam int age) {
         return "Name: " + name + ", Age: " + age;
+    }
+
+    /// Using JSON
+    @GetMapping("/person")
+    public Person getPerson() {
+        return new Person("Seth", 21);
     }
 }
