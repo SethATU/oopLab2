@@ -29,4 +29,33 @@ public class RequestController {
     public Person getPerson() {
         return new Person("Seth", 21);
     }
+
+    /// calculator
+    @GetMapping("/calculate")
+    public Calculate getCalculate(@RequestParam int num1, @RequestParam int num2, @RequestParam String operation) {
+        double result;
+
+        switch (operation) {
+            case "add":
+                result = num1 + num2;
+                break;
+            case "subtract":
+                result = num1 - num2;
+                break;
+            case "multiply":
+                result = num1 * num2;
+                break;
+            case "divide":
+                if(num2 == 0) {
+                    return new Calculate("Divide By Zero");
+                }
+                else {
+                    result = (double) num1 / num2;
+                }
+                break;
+            default:
+                return new Calculate("Error, use (add, subtract, multiply, divide)");
+        }
+        return new Calculate(num1, num2, operation, result);
+    }
 }
